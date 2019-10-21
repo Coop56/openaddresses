@@ -75,12 +75,12 @@ function downloadSource(targetDir, file, main_callback) {
       // download the zip file into the temp directory
       (callback) => {
         logger.debug(`downloading ${file.url}`);
-        child_process.exec(`curl -L -X GET -o ${file.zip} ${file.url}`, callback);
+        child_process.exec(`curl -L -X GET -o ${file.zip} ${file.url}`, { maxBuffer: 1024 * 1024 }, callback);
       },
       // unzip file into target directory
       (callback) => {
         logger.debug(`unzipping ${file.zip} to ${targetDir}`);
-        child_process.exec(`unzip -o -qq -d ${targetDir} ${file.zip}`, callback);
+        child_process.exec(`unzip -o -qq -d ${targetDir} ${file.zip}`, { maxBuffer: 1024 * 1024 }, callback);
       },
       // delete the temp downloaded zip file
       fs.remove.bind(null, file.zip)
