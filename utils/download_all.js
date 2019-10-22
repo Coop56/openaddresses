@@ -39,7 +39,7 @@ function downloadBundle(targetDir, sourceUrl, callback) {
       // download the zip file into the temp directory
       (callback) => {
         logger.debug(`downloading ${sourceUrl}`);
-        child_process.exec(`curl -L -X -s GET -o ${tmpZipFile} ${sourceUrl}`, { maxBuffer: 1024 * 1024 }, callback);
+        child_process.exec(`curl -s -L -X GET -o ${tmpZipFile} ${sourceUrl}`, { maxBuffer: 1024 * 1024 }, callback);
       },
       // unzip file into target directory
       (callback) => {

@@ -75,7 +75,7 @@ function downloadSource(targetDir, file, main_callback) {
       // download the zip file into the temp directory
       (callback) => {
         logger.debug(`downloading ${file.url}`);
-        child_process.exec(`curl -L -X -s GET -o ${file.zip} ${file.url}`, { maxBuffer: 1024 * 1024 }, callback);
+        child_process.exec(`curl -s -L -X GET -o ${file.zip} ${file.url}`, { maxBuffer: 1024 * 1024 }, callback);
       },
       // unzip file into target directory
       (callback) => {
